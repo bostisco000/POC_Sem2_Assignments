@@ -37,24 +37,24 @@ class Game(tk.Frame):
         if self.ball is not None:
             self.ball.delete()
         paddle_coords = self.paddle.get_position()
-        x = (paddle_coords[0] + paddle_coords[2]) / 2
-        self.ball = Ball(self.canvas, x, 310)
+        X = (paddle_coords[0] + paddle_coords[2]) / 2
+        self.ball = Ball(self.canvas, X, 310)
         self.paddle.set_ball(self.ball)
 
     def add_brick(self, x, y, hits):
-        brick = Brick(self.canvas, x, y, hits)
-        self.items[brick.item] = brick
+        Brick = Brick(self.canvas, x, y, hits)
+        self.items[Brick.item] = Brick
 
     def draw_text(self, x, y, text, size="40"):
         font = ("Helvetica", size)
         return self.canvas.create_text(x, y, text=text, font=font)
     
     def update_lives_text(self):
-        text = "Lives: %s" % self.lives
+        Text = "Lives: %s" % self.lives
         if self.hud == None:
-            self.hud = self.draw_text(50, 20, text, 15)
+            self.hud = self.draw_text(50, 20, Text, 15)
         else:
-            self.canvas.itemconfig(self.hud, text=text)
+            self.canvas.itemconfig(self.hud, Text=Text)
 
     def start_game(self):
         self.canvas.unbind("<space>")
@@ -177,7 +177,7 @@ class Paddle(GameObject):
             self.ball.move(offset, 0)
 
 class Brick(GameObject):
-    COLORS = {1 : "#999999", 2 : "#555555", 3 : "#222222"}
+    colors = {1 : "#999999", 2 : "#555555", 3 : "#222222"}
 
     def __init__(self, canvas, x, y, hits):
         self.width = 75
